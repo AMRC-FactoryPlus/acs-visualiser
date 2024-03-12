@@ -3,11 +3,9 @@
 FROM node:lts-alpine
 
 USER node
-RUN mkdir -p /home/node/app/node_modules
 WORKDIR /home/node/app
-COPY . .
+COPY --chown=node . .
 RUN <<'SHELL'
-    chmod 755 public
     npm install --save=false
     npx webpack
 SHELL
